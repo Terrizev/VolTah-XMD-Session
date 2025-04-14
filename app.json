@@ -1,0 +1,22 @@
+{
+    "name": "VolTah Xmd session",
+    "description": "VolTah-XMD WA bot, Created by Giddy Tennor to simplify your digital lives",
+    "logo": "https://telegra.ph/file/12b0fb245e6b8ba4bf718.jpg",
+    "repository": "https://github.com/Tennor-modz/VolTah-XMd-Session",
+    "keywords": ["VolTahMd"],
+    "success_url": "/", 
+    "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
+    "env": {      
+      "PORT": {
+        "description": "Port for web app.4000,5000,3000... any!",
+        "value": "5000",
+        "required": false 
+      },
+      "MESSAGE": {
+        "description": "set session id conformation message",
+        "value": "",
+        "required": false 
+      }
+    }   
+
+}
