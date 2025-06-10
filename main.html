@@ -1,279 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Toxic sessions</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background-color: black;
-      overflow: hidden;
-      position: relative;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For SHIDAR 🥰</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #fff;
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
+            }
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item:nth-child(1) {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .gallery-item:nth-child(2) {
+            animation: float 7s ease-in-out infinite 1s;
+        }
+        
+        .gallery-item:nth-child(3) {
+            animation: float 8s ease-in-out infinite 2s;
+        }
+        
+        .gallery-item:nth-child(4) {
+            animation: float 6.5s ease-in-out infinite 0.5s;
+        }
+        
+        .gallery-item:nth-child(5) {
+            animation: float 7.5s ease-in-out infinite 1.5s;
+        }
+        
+        .gallery-item:nth-child(6) {
+            animation: float 6s ease-in-out infinite 2.5s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .message-container {
+            margin-top: 30px;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            opacity: 0;
+            position: absolute;
+            transition: opacity 1s ease;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .message.active {
+            opacity: 1;
+        }
+        
+        .music-player {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .music-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .music-btn {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+        
+        .time-heart {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .time {
+            font-weight: 600;
+        }
+        
+        .heart {
+            color: #ff4da6;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .footer:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .like {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+            color: #ff4da6;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Animation for images */
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Individual image animations */
+        .gallery-item:nth-child(1) img {
+            animation: fadeIn 2s ease-in;
+        }
+        
+        .gallery-item:nth-child(2) img {
+            animation: slideIn 2s ease-in;
+        }
+        
+        .gallery-item:nth-child(3) img {
+            animation: bounce 3s infinite;
+        }
+        
+        .gallery-item:nth-child(4) img {
+            animation: rotate 20s linear infinite;
+        }
+        
+        .gallery-item:nth-child(5) img {
+            animation: fadeIn 2s ease-in 1s;
+        }
+        
+        .gallery-item:nth-child(6) img {
+            animation: slideIn 2s ease-in 1s;
+        }
 
-    /* Atomic Animation */
-    .atomic-animation {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      height: 200px;
-      z-index: -1;
-    }
+        /* Modal for enlarged image */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            animation: fadeIn 0.3s;
+        }
 
-    .nucleus {
-      width: 20px;
-      height: 20px;
-      background-color: #00FFFF;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
-    }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80vh;
+            object-fit: contain;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
 
-    .orbit {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      animation: rotate 5s linear infinite;
-    }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
 
-    .orbit::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      width: 10px;
-      height: 10px;
-      background-color: #00FFFF;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
-    }
-
-    .orbit:nth-child(2) {
-      width: 150%;
-      height: 150%;
-      animation-duration: 7s;
-    }
-
-    .orbit:nth-child(3) {
-      width: 200%;
-      height: 200%;
-      animation-duration: 10s;
-    }
-
-    @keyframes rotate {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Existing Styles */
-    .btn {
-      --color: #e5f5f1;
-      --color2: rgb(0, 0, 0);
-      width: 200px;
-      padding: 0.8em 1.75em;
-      background-color: transparent;
-      border-radius: 6px;
-      border: .3px solid var(--color);
-      transition: .5s;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      z-index: 1;
-      font-weight: 300;
-      font-size: 17px;
-      font-family: 'Roboto', 'Segoe UI', sans-serif;
-      text-transform: uppercase;
-      color: var(--color);
-      margin-bottom: 24px;
-    }
-
-    .btn::after, .btn::before {
-      content: '';
-      display: block;
-      height: 100%;
-      width: 100%;
-      transform: skew(90deg) translate(-50%, -50%);
-      position: absolute;
-      inset: 50%;
-      left: 25%;
-      z-index: -1;
-      transition: .5s ease-out;
-      background-color: var(--color);
-    }
-
-    .btn::before {
-      top: -50%;
-      left: -25%;
-      transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
-    }
-
-    .btn:hover::before {
-      transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
-    }
-
-    .btn:hover::after {
-      transform: skew(45deg) translate(-50%, -50%);
-    }
-
-    .btn:hover {
-      color: var(--color2);
-    }
-
-    .btn:active {
-      filter: brightness(.7);
-      transform: scale(.98);
-    }
-
-    .story {
-      margin: 20px;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.8);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .audio-controls {
-      margin-top: 20px;
-    }
-
-    .hacker-button {
-      background-color: #FFFF33;
-      color: #6633FF;
-      border: 2px solid #3300FF;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-
-    .hacker-button:hover {
-      background-color: #f00;
-      color: #FF33FF;
-    }
-
-    .contact-details {
-      margin-top: 20px;
-      color: #990099;
-    }
-
-    .copyright {
-      margin-top: 20px;
-      color: #FFFF00;
-    }
-
-    .news-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      font-family: "Roboto", sans-serif;
-      box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.3);
-    }
-
-    .news-container .title {
-      position: absolute;
-      background: #df2020;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-      color: white;
-      font-weight: bold;
-      z-index: 200;
-    }
-
-    .news-container ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      animation: scroll 25s infinite linear;
-    }
-
-    .news-container ul li {
-      white-space: nowrap;
-      padding: 10px 24px;
-      color: #494949;
-      position: relative;
-    }
-
-    .news-container ul li::after {
-      content:"";
-      width: 1px;
-      height: 100%;
-      background: #b8b8b8;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-
-    .news-container ul li:last-child::after {
-      display: none;
-    }
-
-    @keyframes scroll {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(-1083px);
-      }
-    }
-  </style>
+        .close:hover {
+            color: #ff4da6;
+            transform: scale(1.2);
+        }
+    </style>
 </head>
 <body>
-  <!-- Atomic Animation -->
-  <div class="atomic-animation">
-    <div class="nucleus"></div>
-    <div class="orbit"></div>
-    <div class="orbit"></div>
-    <div class="orbit"></div>
-  </div>
-
-  <div class="news-container">
-    <div class="title">
-      Hello there
+    <div class="container">
+        <div class="time-heart">
+            <span class="time" id="current-time"></span>
+            <span class="heart">❤</span>
+        </div>
+        
+        <h1>SHIDAR</h1>
+        
+        <div class="gallery">
+            <div class="gallery-item" onclick="openModal('https://files.catbox.moe/7g74tx.jpg')">
+                <img src="https://files.catbox.moe/7g74tx.jpg" alt="SHIDAR">
+            </div>
+            <div class="gallery-item" onclick="openModal('https://files.catbox.moe/0o1buo.jpg')">
+                <img src="https://files.catbox.moe/0o1buo.jpg" alt="SHIDAR">
+            </div>
+            <div class="gallery-item" onclick="openModal('https://files.catbox.moe/j6yc7j.jpg')">
+                <img src="https://files.catbox.moe/j6yc7j.jpg" alt="SHIDAR">
+            </div>
+            <div class="gallery-item" onclick="openModal('https://files.catbox.moe/1f495d.jpg')">
+                <img src="https://files.catbox.moe/1f495d.jpg" alt="SHIDAR">
+            </div>
+            <div class="gallery-item" onclick="openModal('https://files.catbox.moe/6gz1ii.jpg')">
+                <img src="https://files.catbox.moe/6gz1ii.jpg" alt="SHIDAR">
+            </div>
+            <div class="gallery-item" onclick="openModal('https://files.catbox.moe/vzffph.jpg')">
+                <img src="https://files.catbox.moe/vzffph.jpg" alt="SHIDAR">
+            </div>
+        </div>
+        
+        <div class="message-container">
+            <div class="message active" id="message1">Your smile brightens my darkest days</div>
+            <div class="message" id="message2">You're more beautiful than a thousand sunsets</div>
+            <div class="message" id="message3">Your laughter is my favorite melody</div>
+            <div class="message" id="message4">The world is better because you're in it</div>
+            <div class="message" id="message5">You shine brighter than the stars</div>
+            <div class="message" id="message6">My heart skips a beat when I see you</div>
+        </div>
+        
+        <div class="like">I like u🥰</div>
+        
+        <div class="music-player">
+            <audio id="bg-music" loop>
+                <source src="https://files.catbox.moe/lk0ddh.mp3" type="audio/mpeg">
+            </audio>
+            <div class="music-controls">
+                <button class="music-btn" id="play-btn">▶</button>
+                <button class="music-btn" id="pause-btn">❚❚</button>
+            </div>
+        </div>
+        
+        <div class="footer">Designed by Uthuman</div>
     </div>
-    <ul>
-      <li>welcome to xhclinton solutions!</li>
-      <li>Here you will get session ids for your whatsapp bots</li>
-      <li>Toxic Md and others</li>
-    </ul>
-  </div>
 
-  <center>  
-    <button onclick="window.open(`/qr`)" class="btn">qr code</button>
-    <button onclick="window.open(`/pair`)" class="btn">pair code</button>
-    <button onclick="window.open(`https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2Fxhclintohn%2FToxic-MD&team=juni3&template=https%3A%2F%2Fgithub.com%2Fxhclintohn%2FToxic-MD.git`)" class="btn">deploy Toxic-MD</button>
-    <button onclick="window.open(`https://github.com/xhclintohn/Toxic-MD/fork`)" class="btn">Fork Toxic-MD</button>
-    <button onclick="window.open(`https://github.com/xhclintohn/Toxic-MD`)" class="btn">Open Toxic-MD Repo</button>
-  </center>
+    <!-- Modal for enlarged images -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="enlargedImg">
+    </div>
 
-  <div class="copyright">
-    <center>
-      <p>&copy; 𝐓𝐨𝐱𝐢𝐜-𝐌𝐃 2025</p>
-      <p>𝐃𝐞𝐬𝐢𝐠𝐧𝐞𝐝 𝐁𝐲 <b>𝐱𝐡_𝐜𝐥𝐢𝐧𝐭𝐨𝐧</b> 𝐅𝐨𝐫  𝐘𝐨𝐮 👌</p>
-    </center>
-  </div>
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+        // Music player controls
+        const music = document.getElementById('bg-music');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        
+        playBtn.addEventListener('click', () => {
+            music.play();
+        });
+        
+        pauseBtn.addEventListener('click', () => {
+            music.pause();
+        });
+        
+        // Rotating messages
+        const messages = [
+            document.getElementById('message1'),
+            document.getElementById('message2'),
+            document.getElementById('message3'),
+            document.getElementById('message4'),
+            document.getElementById('message5'),
+            document.getElementById('message6')
+        ];
+        
+        let currentMessage = 0;
+        
+        function showNextMessage() {
+            messages[currentMessage].classList.remove('active');
+            currentMessage = (currentMessage + 1) % messages.length;
+            messages[currentMessage].classList.add('active');
+        }
+        
+        setInterval(showNextMessage, 5000); // Change message every 5 seconds
+        
+        // Image modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('enlargedImg');
+        
+        function openModal(imgSrc) {
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+            document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+        }
+        
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
+        }
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
